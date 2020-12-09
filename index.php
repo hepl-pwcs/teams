@@ -17,7 +17,7 @@
         <ul class="list-group">
             <li class="list-group-item">Vous avez oublié de spécifier une ou des équipes</li>
         </ul>
-    </div
+    </div>
     <ul class="list-group">
         <li class="list-group-item">Standard de Liège</li>
         <li class="list-group-item">Anderlecht</li>
