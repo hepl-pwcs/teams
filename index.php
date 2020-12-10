@@ -1,9 +1,12 @@
 <?php
-$errors = [];
+define('MISSING_TEAM', 'Vous avez oublié de spécifier une ou des équipes');
+define('MISSING_FILE', 'Le fichier texte est absent');
 
+$errors = [
+
+];
 
 ?>
-
 <!-- TEMPLATE D’AFFICHAGE -->
 
 <!doctype html>
@@ -24,7 +27,9 @@ $errors = [];
     <?php if ($errors): ?>
         <div class="alert alert-warning">
             <ul class="list-group">
-                <li class="list-group-item">Vous avez oublié de spécifier une ou des équipes</li>
+                <?php foreach ($errors as $error): ?>
+                    <li class="list-group-item"><?= $error ?></li>
+                <?php endforeach ?>
             </ul>
         </div>
     <?php else: ?>
