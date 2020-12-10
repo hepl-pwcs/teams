@@ -1,10 +1,10 @@
 <?php
 define('MISSING_TEAM', 'Vous avez oublié de spécifier une ou des équipes');
 define('MISSING_FILE', 'Le fichier texte est absent');
+define('NO_TEAM_YEAT', 'Il n’y a pas encore d’équipe à lister');
 
-$errors = [
-
-];
+$errors = [];
+$teams = [];
 
 ?>
 <!-- TEMPLATE D’AFFICHAGE -->
@@ -33,10 +33,17 @@ $errors = [
             </ul>
         </div>
     <?php else: ?>
-        <ul class="list-group">
-            <li class="list-group-item">Standard de Liège</li>
-            <li class="list-group-item">Anderlecht</li>
-        </ul>
+        <?php if ($teams): ?>
+            <ul class="list-group">
+                <?php foreach ($teams as $team): ?>
+                    <li class="list-group-item"><?= $team ?></li>
+                <?php endforeach ?>
+            </ul>
+        <?php else: ?>
+            <div class="alert alert-warning">
+                <p><?= NO_TEAM_YEAT ?></p>
+            </div>
+        <?php endif ?>
         <section class="mt-5">
             <h2>Ajout d’une équipe</h2>
             <form action="/" method="post">
@@ -55,37 +62,32 @@ $errors = [
                        value="add">
             </form>
         </section>
-        <section class="mt-5">
-            <h2>Suppression d’une ou de plusieurs équipes</h2>
-            <form action="/" method="post">
-                <ul class="list-group">
-                    <li class="form-check list-group-item">
-                        <input class="form-check-input"
-                               type="checkbox"
-                               id="Standard de Liège"
-                               name="team-name[]"
-                               value="Standard de Liège">
-                        <label class="form-check-label"
-                               for="Standard de Liège">Standard de Liège</label>
-                    </li>
-                    <li class="form-check list-group-item">
-                        <input class="form-check-input"
-                               type="checkbox"
-                               id="Anderlecht"
-                               name="team-name[]"
-                               value="Anderlecht">
-                        <label class="form-check-label"
-                               for="Anderlecht">Anderlecht</label>
-                    </li>
-                </ul>
-                <button class="btn btn-primary form-control-sm mt-3"
-                        type="submit">Supprimer la ou les équipes sélectionné(es)
-                </button>
-                <input type="hidden"
-                       name="action"
-                       value="delete">
-            </form>
-        </section>
+        <?php if ($teams): ?>
+            <section class="mt-5">
+                <h2>Suppression d’une ou de plusieurs équipes</h2>
+                <form action="/" method="post">
+                    <ul class="list-group">
+                        <?php foreach ($teams as $team): ?>
+                            <li class="form-check list-group-item">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       id="<?= $team ?>"
+                                       name="team-name[]"
+                                       value="<?= $team ?>">
+                                <label class="form-check-label"
+                                       for="<?= $team ?>"><?= $team ?></label>
+                            </li>
+                        <?php endforeach ?>
+                    </ul>
+                    <button class="btn btn-primary form-control-sm mt-3"
+                            type="submit">Supprimer la ou les équipes sélectionné(es)
+                    </button>
+                    <input type="hidden"
+                           name="action"
+                           value="delete">
+                </form>
+            </section>
+        <?php endif ?>
     <?php endif ?>
 </main>
 </body>
