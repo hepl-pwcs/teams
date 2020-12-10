@@ -1,10 +1,17 @@
 <?php
-define('MISSING_TEAM', 'Vous avez oublié de spécifier une ou des équipes');
-define('MISSING_FILE', 'Le fichier texte est absent');
-define('NO_TEAM_YEAT', 'Il n’y a pas encore d’équipe à lister');
-
 $errors = [];
 $teams = [];
+
+define('MISSING_TEAM', 'Vous avez oublié de spécifier une ou des équipes');
+define('MISSING_FILE', 'Le fichier texte est absent');
+define('NO_TEAM_YET', 'Il n’y a pas encore d’équipe à lister');
+define('FILE_PATH', 'teams.txt');
+
+if (!is_file(FILE_PATH)) {
+    $errors[] = MISSING_FILE;
+} else {
+    $teams = file(FILE_PATH);
+}
 
 ?>
 <!-- TEMPLATE D’AFFICHAGE -->
@@ -41,7 +48,7 @@ $teams = [];
             </ul>
         <?php else: ?>
             <div class="alert alert-warning">
-                <p><?= NO_TEAM_YEAT ?></p>
+                <p><?= NO_TEAM_YET ?></p>
             </div>
         <?php endif ?>
         <section class="mt-5">
