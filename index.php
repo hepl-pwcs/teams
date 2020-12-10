@@ -1,4 +1,5 @@
 <?php
+
 $errors = [];
 $teams = [];
 
@@ -20,13 +21,7 @@ if (!is_file(FILE_PATH)) {
             }
         }
         //Delete
-
-        foreach ($teams as $k => $team) {
-            $teams[$k] = $team.PHP_EOL;
-        }
-
-        file_put_contents(FILE_PATH, $teams);
-
+        file_put_contents(FILE_PATH, array_map(fn($team) => $team.PHP_EOL, $teams));
     }
 
 }
