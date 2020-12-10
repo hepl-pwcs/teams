@@ -50,7 +50,7 @@
       <workItem from="1607505568744" duration="283000" />
       <workItem from="1607511671927" duration="676000" />
       <workItem from="1607538635349" duration="207000" />
-      <workItem from="1607585638222" duration="8370000" />
+      <workItem from="1607585638222" duration="9364000" />
     </task>
     <task id="LOCAL-00001" summary="💥 initial commit">
       <created>1607512402410</created>
@@ -115,7 +115,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607598392365</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="update push new team to file">
+      <created>1607606003535</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1607606003535</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -141,6 +148,7 @@
     <MESSAGE value="add display teams logic" />
     <MESSAGE value="add retrieving teams from file" />
     <MESSAGE value="add push new team to file" />
-    <option name="LAST_COMMIT_MESSAGE" value="add push new team to file" />
+    <MESSAGE value="update push new team to file" />
+    <option name="LAST_COMMIT_MESSAGE" value="update push new team to file" />
   </component>
 </project>

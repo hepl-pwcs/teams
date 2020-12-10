@@ -20,7 +20,10 @@ if (!is_file(FILE_PATH)) {
                 $teams[] = $teamName;
             }
         }
-        //Delete
+        if ($_POST['action'] === 'delete') {
+            $teamsNames = $_POST['team-name'] ?? [];
+            $teams = array_diff($teams, $teamsNames);
+        }
         file_put_contents(FILE_PATH, array_map(fn($team) => $team.PHP_EOL, $teams));
     }
 
