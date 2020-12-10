@@ -1,5 +1,4 @@
 <?php
-
 $errors = [];
 $teams = [];
 
@@ -14,21 +13,30 @@ if (!is_file(FILE_PATH)) {
     $teams = file(FILE_PATH, FILE_IGNORE_NEW_LINES);
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
         if ($_POST['action'] === 'add') {
-            $teamName = trim($_POST['team-name']);
-            if ($teamName) {
-                $teams[] = $teamName;
+            $tn = $_POST['team-name'] ?? '';
+            if (is_string($tn)) {
+                $teamName = trim($tn);
+                if ($teamName) {
+                    $teams[] = $teamName;
+                }
             }
         }
+
         if ($_POST['action'] === 'delete') {
-            $teamsNames = $_POST['team-name'] ?? [];
-            $teams = array_diff($teams, $teamsNames);
+            $tns = $_POST['team-name'] ?? [];
+            if (is_array($tns)) {
+                $teams = array_diff($teams, $tns);
+            }
         }
+
+
         file_put_contents(FILE_PATH, array_map(fn($team) => $team.PHP_EOL, $teams));
     }
 
 }
-
+$teams = array_map(fn($team) => filter_var($team, FILTER_SANITIZE_FULL_SPECIAL_CHARS), $teams)
 ?>
 <!-- TEMPLATE D’AFFICHAGE -->
 
