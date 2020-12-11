@@ -18,7 +18,7 @@ if (!is_file(FILE_PATH)) {
             $tn = $_POST['team-name'] ?? '';
             if (is_string($tn)) {
                 $teamName = trim($tn);
-                if ($teamName) {
+                if (!in_array($teamName, $teams)) {
                     $teams[] = $teamName;
                 }
             }
